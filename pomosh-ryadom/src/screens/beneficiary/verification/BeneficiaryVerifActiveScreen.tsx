@@ -32,7 +32,7 @@ import {
 } from '../../../utils/verificationAttemptView';
 import {
   buildContactRowsFromChannels,
-  hasVerificationPhotoContent,
+  hasVerificationPhotos,
   resolveVerificationActiveSections,
 } from '../../../utils/verificationActivePreview';
 import { loadVerificationPreferredContact } from '../../../utils/volunteerVerifStorage';
@@ -106,7 +106,6 @@ export function BeneficiaryVerifActiveScreen({ navigation, route }: Props) {
   const sections = useMemo(
     () =>
       resolveVerificationActiveSections({
-        role: 'beneficiary',
         attempt,
         skillCatalog: [],
         contactRows,
@@ -114,14 +113,8 @@ export function BeneficiaryVerifActiveScreen({ navigation, route }: Props) {
     [attempt, contactRows],
   );
 
-  const hasDocumentPhotos = hasVerificationPhotoContent(
-    sections.documentPhotos,
-    sections.documentPreviewPhotos,
-  );
-  const hasCategoryPhotos = hasVerificationPhotoContent(
-    sections.categoryPhotos,
-    sections.categoryPreviewPhotos,
-  );
+  const hasDocumentPhotos = hasVerificationPhotos(sections.documentPhotos);
+  const hasCategoryPhotos = hasVerificationPhotos(sections.categoryPhotos);
   const hasCategoryBlock = sections.categoryRows.length > 0 || hasCategoryPhotos;
 
   const openViewer = (photos: AttemptPhotoItem[], index: number) => {
@@ -180,17 +173,11 @@ export function BeneficiaryVerifActiveScreen({ navigation, route }: Props) {
 
             {hasDocumentPhotos ? (
               <VerificationActiveCard>
-                <VerificationActiveBlockTitle
-                  suffix={
-                    sections.documentPhotos.length || sections.documentPreviewPhotos.length
-                  }
-                >
+                <VerificationActiveBlockTitle suffix={sections.documentPhotos.length}>
                   Фото документов
                 </VerificationActiveBlockTitle>
                 <VerificationActivePhotoGrid
                   attemptPhotos={sections.documentPhotos}
-                  previewPhotos={sections.documentPreviewPhotos}
-                  allowPreview={sections.usePreview}
                   onPhotoPress={(index) => openViewer(sections.documentPhotos, index)}
                 />
               </VerificationActiveCard>
@@ -210,8 +197,6 @@ export function BeneficiaryVerifActiveScreen({ navigation, route }: Props) {
                 {hasCategoryPhotos ? (
                   <VerificationActivePhotoGrid
                     attemptPhotos={sections.categoryPhotos}
-                    previewPhotos={sections.categoryPreviewPhotos}
-                    allowPreview={sections.usePreview}
                     onPhotoPress={(index) => openViewer(sections.categoryPhotos, index)}
                   />
                 ) : null}

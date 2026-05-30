@@ -41,9 +41,8 @@ import {
 } from '../../../utils/verificationAttemptView';
 import {
   buildContactRowsFromChannels,
-  hasVerificationPhotoContent,
+  hasVerificationPhotos,
   resolveVerificationActiveSections,
-  verificationActiveSkillPhotosPreview,
 } from '../../../utils/verificationActivePreview';
 import { useVolunteerVerifDraft } from '../../../providers/VolunteerVerifDraftProvider';
 import { loadVerificationPreferredContact } from '../../../utils/volunteerVerifStorage';
@@ -120,7 +119,6 @@ export function VolunteerVerifActiveScreen({ navigation, route }: Props) {
   const sections = useMemo(
     () =>
       resolveVerificationActiveSections({
-        role: 'volunteer',
         attempt,
         skillCatalog,
         contactRows,
@@ -130,12 +128,8 @@ export function VolunteerVerifActiveScreen({ navigation, route }: Props) {
 
   const skillsView = sections.skillsView;
   const skillPhotos = skillsView?.photoItems.filter((photo) => photo.uri) ?? [];
-  const skillPhotosPreview = verificationActiveSkillPhotosPreview(skillsView, sections.usePreview);
-  const hasDocumentPhotos = hasVerificationPhotoContent(
-    sections.documentPhotos,
-    sections.documentPreviewPhotos,
-  );
-  const hasSkillPhotos = hasVerificationPhotoContent(skillPhotos, skillPhotosPreview);
+  const hasDocumentPhotos = hasVerificationPhotos(sections.documentPhotos);
+  const hasSkillPhotos = hasVerificationPhotos(skillPhotos);
   const hasSkillsBlock = Boolean(skillsView?.totalCount || hasSkillPhotos);
 
   const openViewer = (photos: AttemptPhotoItem[], index: number) => {
@@ -208,17 +202,11 @@ export function VolunteerVerifActiveScreen({ navigation, route }: Props) {
 
             {hasDocumentPhotos ? (
               <VerificationActiveCard>
-                <VerificationActiveBlockTitle
-                  suffix={
-                    sections.documentPhotos.length || sections.documentPreviewPhotos.length
-                  }
-                >
+                <VerificationActiveBlockTitle suffix={sections.documentPhotos.length}>
                   Фото документов
                 </VerificationActiveBlockTitle>
                 <VerificationActivePhotoGrid
                   attemptPhotos={sections.documentPhotos}
-                  previewPhotos={sections.documentPreviewPhotos}
-                  allowPreview={sections.usePreview}
                   onPhotoPress={(index) => openViewer(sections.documentPhotos, index)}
                 />
               </VerificationActiveCard>
@@ -238,8 +226,6 @@ export function VolunteerVerifActiveScreen({ navigation, route }: Props) {
                 {hasSkillPhotos ? (
                   <VerificationActivePhotoGrid
                     attemptPhotos={skillPhotos}
-                    previewPhotos={skillPhotosPreview}
-                    allowPreview={sections.usePreview}
                     onPhotoPress={(index) => openViewer(skillPhotos, index)}
                   />
                 ) : null}

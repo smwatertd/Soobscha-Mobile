@@ -4,9 +4,7 @@ import { Button } from '../Button';
 import { Icon, IconName } from '../Icon';
 import {
   VolunteerVerifAttemptPhotoGrid,
-  VolunteerVerifPhotoGrid,
 } from '../volunteer/verification/VolunteerVerifParts';
-import { VolunteerVerifReviewPhoto } from '../../screens/volunteer/verification/volunteerVerificationConfig';
 import { ProfileVerificationStatus } from '../../types/profileVerification';
 import { AttemptPhotoItem } from '../../utils/verificationAttemptView';
 import { RADIUS, T } from '../../theme/tokens';
@@ -127,35 +125,22 @@ export function VerificationActiveReasonCard({
 
 export function VerificationActivePhotoGrid({
   attemptPhotos,
-  previewPhotos,
   onPhotoPress,
-  allowPreview = false,
 }: {
   attemptPhotos: AttemptPhotoItem[];
-  previewPhotos: VolunteerVerifReviewPhoto[];
   onPhotoPress?: (index: number) => void;
-  /** Показать цветные плейсхолдеры, если нет uri у загруженных фото. */
-  allowPreview?: boolean;
 }) {
   const photosWithUri = attemptPhotos.filter((photo) => photo.uri);
+  if (!photosWithUri.length) return null;
 
-  if (photosWithUri.length && onPhotoPress) {
-    return (
-      <View style={styles.photoBody}>
-        <VolunteerVerifAttemptPhotoGrid photos={photosWithUri} onPhotoPress={onPhotoPress} />
-      </View>
-    );
-  }
-
-  if (allowPreview && previewPhotos.length) {
-    return (
-      <View style={styles.photoBody}>
-        <VolunteerVerifPhotoGrid photos={previewPhotos} />
-      </View>
-    );
-  }
-
-  return null;
+  return (
+    <View style={styles.photoBody}>
+      <VolunteerVerifAttemptPhotoGrid
+        photos={photosWithUri}
+        onPhotoPress={onPhotoPress}
+      />
+    </View>
+  );
 }
 
 export function VerificationActiveSkillsContent({
