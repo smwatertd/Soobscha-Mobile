@@ -34,8 +34,16 @@ Thumbs.db
 .claude/
 .cursor/
 **/.cursor/
+.aider*
+.windsurf/
+.continue/
+.codex/
+**/.factory/
+**/.opencode/
 **/CLAUDE.md
 **/AGENTS.md
+**/GEMINI.md
+**/.github/copilot-instructions.md
 
 # Logs & debug
 *.log
