@@ -2,7 +2,7 @@ import {
   ProfileMenuItem,
   ProfilePersonalRow,
   ProfileStat,
-} from '../constants/profileMockData';
+} from '../constants/profileUiTypes';
 import { ProfileVerificationStatus } from '../types/profileVerification';
 import { ProfileContactRow } from './profileContacts';
 
@@ -59,18 +59,16 @@ export type BeneficiaryProfileView = Omit<BeneficiaryApiProfile, 'loading' | 'er
   verificationReason?: string;
 };
 
-const MOCK_VERIFICATION_REASON = 'Нечёткое фото селфи';
-
 export function resolveProfileVerificationPreview(
   status: ProfileVerificationStatus,
   sourceDate?: string,
   sourceReason?: string,
 ): { date?: string; reason?: string } {
-  if (status === 'approved') {
-    return { date: sourceDate ?? '22 марта 2024' };
+  if (status === 'approved' && sourceDate) {
+    return { date: sourceDate };
   }
-  if (status === 'rejected' || status === 'revoked') {
-    return { reason: sourceReason ?? MOCK_VERIFICATION_REASON };
+  if ((status === 'rejected' || status === 'revoked') && sourceReason) {
+    return { reason: sourceReason };
   }
   return {};
 }
