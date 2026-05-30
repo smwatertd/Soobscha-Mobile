@@ -9,9 +9,9 @@ expo-env.d.ts
 .metro-health-check*
 
 # Native builds (regenerate with prebuild)
-pomosh-ryadom/android/
-pomosh-ryadom/ios/
-pomosh-ryadom/.kotlin/
+soobscha/android/
+soobscha/ios/
+soobscha/.kotlin/
 
 # Environment & secrets
 .env
