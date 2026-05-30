@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" width="360" height="360" fill="none">
+  <defs>
+    <linearGradient id="markGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1E7A4F"/>
+      <stop offset="100%" stop-color="#165A3C"/>
+    </linearGradient>
+  </defs>
+  <rect x="108" y="72" width="144" height="144" rx="45" fill="url(#markGradient)"/>
+  <g transform="translate(180 144) scale(5.5) translate(-12 -12)">
+    <path
+      d="M12 20s-7-4.5-9-9.5C1.5 6.5 5 3 8 4.5c1.6.8 2.8 2 4 4 1.2-2 2.4-3.2 4-4 3-1.5 6.5 2 5 6-2 5-9 9.5-9 9.5z"
+      fill="#FFFFFF"
+    />
+  </g>
+  <text
+    x="180"
+    y="276"
+    fill="#FFFFFF"
+    text-anchor="middle"
+    font-family="Manrope, Inter, system-ui, -apple-system, sans-serif"
+    font-size="44"
+    font-weight="800"
+    letter-spacing="-1"
+  >!>>1I0</text>
+</svg>
