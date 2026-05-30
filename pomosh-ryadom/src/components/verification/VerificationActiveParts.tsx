@@ -134,7 +134,7 @@ export function VerificationActivePhotoGrid({
   attemptPhotos: AttemptPhotoItem[];
   previewPhotos: VolunteerVerifReviewPhoto[];
   onPhotoPress?: (index: number) => void;
-  /** Только layout-режим: цветные плейсхолдеры без реальных файлов. */
+  /** Показать цветные плейсхолдеры, если нет uri у загруженных фото. */
   allowPreview?: boolean;
 }) {
   const photosWithUri = attemptPhotos.filter((photo) => photo.uri);

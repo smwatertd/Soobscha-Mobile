@@ -17,7 +17,7 @@ import {
 export type VerificationActiveRow = { label: string; value: string };
 
 export type VerificationActiveSections = {
-  /** Layout-режим: демо-данные вместо пустых блоков. */
+  /** Демо-данные, когда заявка на верификацию ещё не загружена. */
   usePreview: boolean;
   personalRows: VerificationActiveRow[];
   documentPhotos: AttemptPhotoItem[];
