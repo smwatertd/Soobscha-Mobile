@@ -1,0 +1,65 @@
+# Dependencies
+node_modules/
+
+# Expo / React Native
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+.metro-health-check*
+
+# Native builds (regenerate with prebuild)
+pomosh-ryadom/android/
+pomosh-ryadom/ios/
+pomosh-ryadom/.kotlin/
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+*.pem
+google-services.json
+**/google-services.json
+
+# OS & editors
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# AI / assistant tooling
+.claude/
+.cursor/
+**/.cursor/
+**/CLAUDE.md
+**/AGENTS.md
+
+# Logs & debug
+*.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# TypeScript
+*.tsbuildinfo
+
+# Android signing
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# Uploads & local assets (not part of app source)
+Сообща/
+**/uploads/
+
+# Test / coverage
+coverage/
+
+# Misc
+*.tsbuildinfo
