@@ -6,13 +6,13 @@
 
 | Путь | Описание |
 |------|----------|
-| `soobscha/` | Expo / React Native приложение |
+| `src/` | Expo / React Native приложение |
 | `openapi.json` | OpenAPI-спецификация бэкенда |
 
 ## Запуск приложения
 
 ```bash
-cd soobscha
+cd src
 cp .env.example .env
 # укажите EXPO_PUBLIC_API_URL и EXPO_PUBLIC_YANDEX_MAPS_API_KEY
 npm install
@@ -24,10 +24,10 @@ npm start
 ## Тесты
 
 ```bash
-cd soobscha
+cd src
 npm run test:run
 ```
 
 ## Переменные окружения
 
-См. `soobscha/.env.example`. Файл `.env` в git не попадает.
+См. `src/.env.example`. Файл `.env` в git не попадает.
