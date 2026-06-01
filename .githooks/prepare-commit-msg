@@ -1,0 +1,6 @@
+#!/bin/sh
+# Remove unwanted commit message trailers
+if [ -f "$1" ]; then
+  sed -i '' '/Co-authored-by: Cursor/d; /cursoragent@cursor.com/d; /Made-with: Cursor/d' "$1" 2>/dev/null || \
+  sed -i '/Co-authored-by: Cursor/d; /cursoragent@cursor.com/d; /Made-with: Cursor/d' "$1"
+fi
